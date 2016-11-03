@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Volt Planner</title>
+  <!-- Set viewport for responsive layout-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <form>
+          <div class="form-group">
+            <label id="monthLabel" data-month="{{result.month}}">{{result.month}}</label>
+            <textarea class="form-control" rows="3" name="challenge" placeholder="For the next 30 days, I want to ...">{{result.challenge}}</textarea>
+            <textarea class="form-control" name="reason" placeholder="I want to make this happen because ...">{{result.reason}}</textarea>
+            <label class="notificationTime">Notification time</label>
+            <input type="time" class="form-control" name="notificationTime" value="{{result.notificationTime}}">
+          </div>
+        </form>
+        <button class="btn btn-default" id="update" type="button">Update</button>
+        <button class="btn btn-default" id="delete" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+  <script src="../month.js"></script>
+</body>
+</html>

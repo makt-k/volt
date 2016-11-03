@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Volt Planner</title>
+  <!-- Set viewport for responsive layout-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <form action="/challenge" method="POST">
+          <div class="form-group">
+            <label for="challege">30-Day Challenge</label>
+            <select class="form-control" name="month" placeholder="month">
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value-"December">December</option>
+            </select>
+            <textarea class="form-control" rows="3" name="challenge" placeholder="For the next 30 days, I want to ..."></textarea>
+            <textarea class="form-control" name="reason" placeholder="I want to make this happen because ..."></textarea>
+            <label class="notificationTime">Set daily notification time</label>
+            <input type="time" class="form-control" name="notificationTime">
+          </div>
+          <button type="submit" class="btn btn-default">Pledge</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
