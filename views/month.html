@@ -15,10 +15,10 @@
         <form>
           <div class="form-group">
             <label id="monthLabel" data-month="{{result.month}}">{{result.month}}</label>
-            <textarea class="form-control" rows="3" name="challenge" placeholder="For the next 30 days, I want to ...">{{result.challenge}}</textarea>
-            <textarea class="form-control" name="reason" placeholder="I want to make this happen because ...">{{result.reason}}</textarea>
+            <textarea class="form-control" rows="3" name="challenge" placeholder="For the next 30 days, I want to ..." id="challenge">{{result.challenge}}</textarea>
+            <textarea class="form-control" name="reason" placeholder="I want to make this happen because ..." id="reason">{{result.reason}}</textarea>
             <label class="notificationTime">Notification time</label>
-            <input type="time" class="form-control" name="notificationTime" value="{{result.notificationTime}}">
+            <input type="time" class="form-control" name="notificationTime" value="{{result.notificationTime}}" id="time">
           </div>
         </form>
         <button class="btn btn-default" id="update" type="button">Update</button>

@@ -21,6 +21,7 @@ app.set('public', 'public');
 // middleware
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
+app.use(bodyParser.json())
 
 MongoClient.connect('mongodb://kmak:buckybear97@ds023442.mlab.com:23442/volt-project', (err, database) => {
   if (err) return console.log(err)
@@ -71,10 +72,28 @@ app.delete('/month/:month', (req, res) => {
   })
 })
 
+app.put('/month/:month', (req, res) => {
+  db.collection('challenges').findOneAndUpdate({ month: req.params.month }, {
+      $set: {
+        month: req.body.month,
+        challenge: req.body.challenge,
+        reason: req.body.reason,
+        notificationTime: req.body.notificationTime
+      }
+    }, {}, (err, result) => {
+      if (err) return res.send(500, err)
+
+      setScheduler(req, res, () => {
+        res.send('updated');
+      })
+  })
+
+})
+
 
 // set notifier per form request
 
-function setNotifier(req, res) {
+function setNotifier(req, res, callback) {
   notifier.notify({
     title: 'Be awesome today',
     icon: path.join(__dirname, 'inkandvoltfav.png'),
@@ -82,6 +101,7 @@ function setNotifier(req, res) {
     sound: false,
     wait: true
   });
+  callback();
 }
 
 function processTime(input) {
@@ -116,16 +136,13 @@ function setScheduler(req, res, callback) {
   const { hour, minute } = processTime(req.body.notificationTime);
   const month = getMonthIndex(req.body.month);
 
-  job = new cronJob({
+  return job = new cronJob({
     cronTime: `00 ${minute} ${hour} * ${month} *`,
     onTick: function() {
-      setNotifier(req, res)
+      setNotifier(req, res, callback);
     },
-    start: false,
+    start: true
   });
-
-  job.start();
-  callback();
 }
 
 function cancelScheduler() {
